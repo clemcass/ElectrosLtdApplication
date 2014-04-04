@@ -1,0 +1,62 @@
+﻿@model ElectrosLtdApplication.Models.ProductModel
+
+@{
+    ViewBag.Title = "ProductDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ProductDetails</h2>
+
+<fieldset>
+    <legend>Details</legend>
+   
+   <div style="height:100%;width:50%;float:left;padding:0; text-align: center;">
+    <br />
+    <div class="display-label">Name   @Html.DisplayFor(model => model.Product.Name)</div>
+    <br />
+
+    <div class="display-label">Features</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Product.Features)
+    </div>
+    <br />
+
+    <div class="display-label">Price   @Html.DisplayFor(model => model.Product.Price)</div>
+  
+    <br />
+
+    <div class="display-label">Category   @Html.DisplayFor(model => model.Product.Category.Name)</div>
+   
+
+
+</div>
+
+<div  style="height:100%;width:50%;float:right;padding:0; text-align: center;">
+    
+          <img width="300" height="300" src="@Url.Content(Model.Product.Image)" alt="Image" />
+          <br />
+          <br />
+          <input id="Text1" type="text" /> <input id="Submit1" type="submit" value="Buy" />
+          <br />
+</div>
+    
+</fieldset>
+
+
+<fieldset>
+    <legend>Reviews</legend>
+
+  @foreach (Common.Review r in ViewBag.Review)
+     {
+       <div style="width:25%;float:left;padding:0; text-align: center;">
+         <div class="display-label">@Html.Label( r.User.Username):</div>
+       </div>
+      <div class="display-label" style="width:75%;float:left;padding:0;">
+            @Html.Label(r.ReviewComment)
+      </div>
+      
+      }
+    @Html.ActionLink("Add Review", "AddReview", new { id = Model.Product.ProductId })
+</fieldset>
+
+
