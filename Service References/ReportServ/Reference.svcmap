@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c9ea0136-8a26-40b0-a20f-d776bea2e010" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3728/ReportsService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ReportsService.xsd" MetadataType="Schema" ID="f4beed7e-4dfc-4e59-8d22-7d2b60dd446d" SourceId="1" SourceUrl="http://localhost:3728/ReportsService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ReportsService1.xsd" MetadataType="Schema" ID="e1beafe1-8db2-45d2-b095-6564436b5239" SourceId="1" SourceUrl="http://localhost:3728/ReportsService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ReportsService2.xsd" MetadataType="Schema" ID="d7eb6be1-ce34-410c-ad67-3215565e0f1c" SourceId="1" SourceUrl="http://localhost:3728/ReportsService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ReportsService3.xsd" MetadataType="Schema" ID="1997a82e-0ce0-4dd8-a7b3-1d3c33b1716b" SourceId="1" SourceUrl="http://localhost:3728/ReportsService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ReportsService.disco" MetadataType="Disco" ID="877eb301-38d5-4701-bcb9-59c920903665" SourceId="1" SourceUrl="http://localhost:3728/ReportsService.svc?disco" />
+    <MetadataFile FileName="ReportsService.wsdl" MetadataType="Wsdl" ID="1af5d654-a96f-4a9b-9815-c179d3268a4d" SourceId="1" SourceUrl="http://localhost:3728/ReportsService.svc?wsdl" />
+    <MetadataFile FileName="ReportsService4.xsd" MetadataType="Schema" ID="9ad7ed89-6a13-4f10-9a03-f1b92e437b8c" SourceId="1" SourceUrl="http://localhost:3728/ReportsService.svc?xsd=xsd4" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

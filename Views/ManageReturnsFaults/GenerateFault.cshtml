@@ -1,0 +1,51 @@
+﻿@model ElectrosLtdApplication.Models.FaultModel
+
+@{
+    ViewBag.Title = "GenerateFault";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Fault</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TicketNo)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TicketNo, new { @readonly = "readonly" })
+        </div>
+        
+        <img src="data:image;base64,@System.Convert.ToBase64String(Model.Barcode)" />
+        @Html.HiddenFor(model => model.Barcode)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Details)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Details)
+            @Html.ValidationMessageFor(model => model.Details)
+            
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OrderItemId)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.OrderItemId, new { @readonly = "readonly" })
+          
+        </div>
+
+        <p>
+            <input type="submit" value="Create"  />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

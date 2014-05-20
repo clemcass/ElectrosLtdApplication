@@ -18,5 +18,8 @@ namespace ElectrosLtdApplication.Models
 
         public virtual Order Order { get; set; }
 
+
+        public string Message { get; set; }
+
     }
 }

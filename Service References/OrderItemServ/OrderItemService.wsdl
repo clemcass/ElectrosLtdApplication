@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="OrderItemService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3728/OrderItemService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3728/OrderItemService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3728/OrderItemService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Common" />
+      <xsd:import schemaLocation="http://localhost:3728/OrderItemService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+      <xsd:import schemaLocation="http://localhost:3728/OrderItemService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IOrderItemService_AddOrderItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddOrderItems" />
+  </wsdl:message>
+  <wsdl:message name="IOrderItemService_AddOrderItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddOrderItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderItemService_UpdateOrderItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderItem" />
+  </wsdl:message>
+  <wsdl:message name="IOrderItemService_UpdateOrderItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderItemService_DeleteOrderItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderItem" />
+  </wsdl:message>
+  <wsdl:message name="IOrderItemService_DeleteOrderItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderItemService_GetOrderItemById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderItemById" />
+  </wsdl:message>
+  <wsdl:message name="IOrderItemService_GetOrderItemById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderItemByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderItemService_GetOrderItemByOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderItemByOrder" />
+  </wsdl:message>
+  <wsdl:message name="IOrderItemService_GetOrderItemByOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderItemByOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderItemService_GetOrderItemByProductAndOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderItemByProductAndOrder" />
+  </wsdl:message>
+  <wsdl:message name="IOrderItemService_GetOrderItemByProductAndOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderItemByProductAndOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderItemService_GetOrderItemIfBought_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderItemIfBought" />
+  </wsdl:message>
+  <wsdl:message name="IOrderItemService_GetOrderItemIfBought_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderItemIfBoughtResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IOrderItemService">
+    <wsdl:operation name="AddOrderItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderItemService/AddOrderItems" message="tns:IOrderItemService_AddOrderItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderItemService/AddOrderItemsResponse" message="tns:IOrderItemService_AddOrderItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderItemService/UpdateOrderItem" message="tns:IOrderItemService_UpdateOrderItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderItemService/UpdateOrderItemResponse" message="tns:IOrderItemService_UpdateOrderItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrderItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderItemService/DeleteOrderItem" message="tns:IOrderItemService_DeleteOrderItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderItemService/DeleteOrderItemResponse" message="tns:IOrderItemService_DeleteOrderItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItemById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderItemService/GetOrderItemById" message="tns:IOrderItemService_GetOrderItemById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderItemService/GetOrderItemByIdResponse" message="tns:IOrderItemService_GetOrderItemById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItemByOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderItemService/GetOrderItemByOrder" message="tns:IOrderItemService_GetOrderItemByOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderItemService/GetOrderItemByOrderResponse" message="tns:IOrderItemService_GetOrderItemByOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItemByProductAndOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderItemService/GetOrderItemByProductAndOrder" message="tns:IOrderItemService_GetOrderItemByProductAndOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderItemService/GetOrderItemByProductAndOrderResponse" message="tns:IOrderItemService_GetOrderItemByProductAndOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItemIfBought">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderItemService/GetOrderItemIfBought" message="tns:IOrderItemService_GetOrderItemIfBought_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderItemService/GetOrderItemIfBoughtResponse" message="tns:IOrderItemService_GetOrderItemIfBought_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IOrderItemService" type="tns:IOrderItemService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddOrderItems">
+      <soap:operation soapAction="http://tempuri.org/IOrderItemService/AddOrderItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderItem">
+      <soap:operation soapAction="http://tempuri.org/IOrderItemService/UpdateOrderItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrderItem">
+      <soap:operation soapAction="http://tempuri.org/IOrderItemService/DeleteOrderItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItemById">
+      <soap:operation soapAction="http://tempuri.org/IOrderItemService/GetOrderItemById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItemByOrder">
+      <soap:operation soapAction="http://tempuri.org/IOrderItemService/GetOrderItemByOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItemByProductAndOrder">
+      <soap:operation soapAction="http://tempuri.org/IOrderItemService/GetOrderItemByProductAndOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItemIfBought">
+      <soap:operation soapAction="http://tempuri.org/IOrderItemService/GetOrderItemIfBought" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OrderItemService">
+    <wsdl:port name="BasicHttpBinding_IOrderItemService" binding="tns:BasicHttpBinding_IOrderItemService">
+      <soap:address location="http://localhost:3728/OrderItemService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

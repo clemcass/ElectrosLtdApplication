@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="AjtmCAWOxd3MswbDLP1fjFK116A=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="xHpDJ7H/jEWbbHKZj3lo3S9Qin0=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IOrderService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IOrderService" contract="OrderServ.IOrderService" bindingType="basicHttpBinding" address="http://localhost:1046/OrderService.svc" bindingConfiguration="BasicHttpBinding_IOrderService">
+    <endpoint name="BasicHttpBinding_IOrderService" contract="OrderServ.IOrderService" bindingType="basicHttpBinding" address="http://localhost:3728/OrderService.svc" bindingConfiguration="BasicHttpBinding_IOrderService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:1046/OrderService.svc</serializedValue>
+          <serializedValue>http://localhost:3728/OrderService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

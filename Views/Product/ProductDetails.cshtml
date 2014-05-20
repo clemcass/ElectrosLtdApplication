@@ -1,45 +1,166 @@
-﻿@model ElectrosLtdApplication.Models.ProductModel
+﻿@*@model ElectrosLtdApplication.Models.ProductModel*@
+@model Common.Product
 
 @{
     ViewBag.Title = "ProductDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ProductDetails</h2>
+<script type="text/javascript">
+
+    function OnButtonClick(product) {
+        var quantity = $("#txtQuantity").val();
+        $.ajax({
+            url: '/Product/AddToShoppingCart/',
+            data: { id: product, qty:quantity },
+            type: "POST",
+            dataType: 'Json',
+            cache: false,
+            success: function (data) {
+                $("#update-message").empty();
+                document.getElementById("update-message").innerHTML = data;
+
+            }
+        });
+
+    }
+
+    $(document).ready(function () {
+        var contentId = '@ViewBag.ProductId'; //should be the identity id for which rating needs to be updated
+        $('#setrating img').each(function (i) {
+            $(this).mouseover(function () { setRating(i + 1) });
+            $(this).click(function () { submitRating(contentId, i + 1) });
+        })
+    });
+
+    function setRating(point) {
+        stars = new Array("R1", "R2", "R3", "R4", "R5");
+        start = parseInt(point);
+        for (i = 0; i < 5; i++) {
+            if (i >= start) document.getElementById(stars[i]).src = "../../Images/rate0.png";
+            if (i < parseInt(point)) document.getElementById(stars[i]).src = "../../Images/rate1.png";
+        }
+    }
+
+    function submitRating(id, p) 
+    {
+        alert(id);
+        alert(p);
+        if (p > 0) {
+
+            $.ajax({
+                url: '/Product/AddStar/',
+                data: { productId: id, star: p },
+                type: "POST",
+                dataType: 'Json',
+                cache: false,
+                success: function (data) 
+                {
+                   
+
+                }
+            });
+
+        }
+        else
+            alert("Please select your rating and submit!");
+    }
+
+    
+</script>
+
+<div id="update-message" style='color:red'>
+</div>
 
 <fieldset>
     <legend>Details</legend>
    
    <div style="height:100%;width:50%;float:left;padding:0; text-align: center;">
     <br />
-    <div class="display-label">Name   @Html.DisplayFor(model => model.Product.Name)</div>
+    <div class="display-label">Name   @Html.DisplayFor(model => model.Name)</div>
     <br />
 
     <div class="display-label">Features</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Product.Features)
+        @Html.DisplayFor(model => model.Features)
+
+
     </div>
     <br />
 
-    <div class="display-label">Price   @Html.DisplayFor(model => model.Product.Price)</div>
+    <div class="display-label">Price   @Html.DisplayFor(model => model.Price)</div>
   
     <br />
 
-    <div class="display-label">Category   @Html.DisplayFor(model => model.Product.Category.Name)</div>
-   
+    <div class="display-label">Category   @Html.DisplayFor(model => model.Category.Name)</div>
 
+    <div id="setrating">
 
+Select Rating :
+
+@if (ViewBag.Avg > 0)
+{
+    <img src="../../Images/rate1.png" id="R1" alt="0" title="Not at All"/>
+}
+else
+{
+    <img src="../../Images/rate0.png" id="R1" alt="0" title="Not at All"/>
+}
+@if (ViewBag.Avg > 1)
+{
+    <img src="../../Images/rate1.png" id="R2" alt="0" title="Not at All"/>
+}
+else
+{
+    <img src="../../Images/rate0.png" id="R2" alt="0" title="Not at All"/>
+}
+@if (ViewBag.Avg > 2)
+{
+    <img src="../../Images/rate1.png" id="R3" alt="0" title="Not at All"/>
+}
+else
+{
+    <img src="../../Images/rate0.png" id="R3" alt="0" title="Not at All"/>
+}
+@if (ViewBag.Avg > 3)
+{
+    <img src="../../Images/rate1.png" id="R4" alt="0" title="Not at All"/>
+}
+else
+{
+    <img src="../../Images/rate0.png" id="R4" alt="0" title="Not at All"/>
+}
+@if (ViewBag.Avg > 4)
+{
+    <img src="../../Images/rate1.png" id="R5" alt="0" title="Very Good"/>
+}
+else
+{
+    <img src="../../Images/rate0.png" id="R5" alt="0" title="Very Good"/>
+}
+
+@*<img src="../../Images/rate0.png" id="R2" alt="1" title="Somewhat" />
+<img src="../../Images/rate0.png" id="R3" alt="2" title="Average" />
+<img src="../../Images/rate0.png" id="R4" alt="3" title="Good" />
+<img src="../../Images/rate0.png" id="R5" alt="4" title="Very Good"/>*@
+</div>
+       
 </div>
 
 <div  style="height:100%;width:50%;float:right;padding:0; text-align: center;">
     
-          <img width="300" height="300" src="@Url.Content(Model.Product.Image)" alt="Image" />
+          <img width="300" height="300" src="@Url.Content(Model.Image)" alt="Image" />
+
           <br />
           <br />
-          <input id="Text1" type="text" /> <input id="Submit1" type="submit" value="Buy" />
+           @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("User")){
+            <input id="txtQuantity" type="text" runat="server" /> 
+           <a href='#' onclick='OnButtonClick(@Model.ProductId )'>Add to cart</a>
+           }
           <br />
 </div>
-    
+
+
 </fieldset>
 
 
@@ -47,16 +168,24 @@
     <legend>Reviews</legend>
 
   @foreach (Common.Review r in ViewBag.Review)
-     {
+  {
        <div style="width:25%;float:left;padding:0; text-align: center;">
-         <div class="display-label">@Html.Label( r.User.Username):</div>
+         <div class="display-label">@Html.Label(r.User.Username):</div>
        </div>
       <div class="display-label" style="width:75%;float:left;padding:0;">
             @Html.Label(r.ReviewComment)
       </div>
       
+  }
+ )
+ 
+  @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("User")){
+                   
+     if (ViewBag.Bought == true)
+      {
+    @Html.ActionLink("Add Review", "AddReview", new { id = Model.ProductId })
       }
-    @Html.ActionLink("Add Review", "AddReview", new { id = Model.Product.ProductId })
+  }
 </fieldset>
 
 

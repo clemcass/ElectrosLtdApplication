@@ -2,11 +2,11 @@
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="OrderService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost:1046/OrderService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:1046/OrderService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:1046/OrderService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Common" />
-      <xsd:import schemaLocation="http://localhost:1046/OrderService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
-      <xsd:import schemaLocation="http://localhost:1046/OrderService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import schemaLocation="http://localhost:3728/OrderService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3728/OrderService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3728/OrderService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Common" />
+      <xsd:import schemaLocation="http://localhost:3728/OrderService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+      <xsd:import schemaLocation="http://localhost:3728/OrderService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IOrderService_GetOrderByPersonId_InputMessage">
@@ -15,10 +15,60 @@
   <wsdl:message name="IOrderService_GetOrderByPersonId_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetOrderByPersonIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IOrderService_GetShippedOrdersByPersonId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetShippedOrdersByPersonId" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_GetShippedOrdersByPersonId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetShippedOrdersByPersonIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_FilterWithDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:FilterWithDate" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_FilterWithDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FilterWithDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_ConfirmOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmOrder" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_ConfirmOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_UpdateOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrder" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_UpdateOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_GetOrderByOrderId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderByOrderId" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_GetOrderByOrderId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderByOrderIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="IOrderService">
     <wsdl:operation name="GetOrderByPersonId">
       <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/GetOrderByPersonId" message="tns:IOrderService_GetOrderByPersonId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/GetOrderByPersonIdResponse" message="tns:IOrderService_GetOrderByPersonId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShippedOrdersByPersonId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/GetShippedOrdersByPersonId" message="tns:IOrderService_GetShippedOrdersByPersonId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/GetShippedOrdersByPersonIdResponse" message="tns:IOrderService_GetShippedOrdersByPersonId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FilterWithDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/FilterWithDate" message="tns:IOrderService_FilterWithDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/FilterWithDateResponse" message="tns:IOrderService_FilterWithDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/ConfirmOrder" message="tns:IOrderService_ConfirmOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/ConfirmOrderResponse" message="tns:IOrderService_ConfirmOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/UpdateOrder" message="tns:IOrderService_UpdateOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/UpdateOrderResponse" message="tns:IOrderService_UpdateOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderByOrderId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/GetOrderByOrderId" message="tns:IOrderService_GetOrderByOrderId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/GetOrderByOrderIdResponse" message="tns:IOrderService_GetOrderByOrderId_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IOrderService" type="tns:IOrderService">
@@ -32,10 +82,55 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetShippedOrdersByPersonId">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/GetShippedOrdersByPersonId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterWithDate">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/FilterWithDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmOrder">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/ConfirmOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrder">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/UpdateOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderByOrderId">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/GetOrderByOrderId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="OrderService">
     <wsdl:port name="BasicHttpBinding_IOrderService" binding="tns:BasicHttpBinding_IOrderService">
-      <soap:address location="http://localhost:1046/OrderService.svc" />
+      <soap:address location="http://localhost:3728/OrderService.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

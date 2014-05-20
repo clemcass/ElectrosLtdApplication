@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Common.Fault>
+
+@{
+    ViewBag.Title = "ListAllFaults";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+ 
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            TicketNo
+        </th>
+        <th>
+            Details
+        </th>
+        <th>
+            OrderItemId
+        </th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TicketNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Details)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderItemId)
+        </td>
+        <td>
+            @Html.ActionLink("Update Fault", "UpdateFault", new { id = item.FaultId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Electros</title>
+    <!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			
+		<![endif]-->
+    <link rel="stylesheet" media="all" href="../../css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+    <!-- JS -->
+    <script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")" type="text/javascript"></script>
+    <script src="../../js/Scripts/jquery-1.6.4.min.js"></script>
+    <script src="../../js/Scripts/css3-mediaqueries.js"></script>
+    <script src="../../js/Scripts/custom.js"></script>
+    <script src="../../js/Scripts/tabs.js"></script>
+    <!-- Tweet -->
+    <link rel="stylesheet" href="../../css/jquery.tweet.css" media="all" />
+    <script src="../../js/tweet/jquery.tweet.js"></script>
+    <!-- ENDS Tweet -->
+    <!-- superfish -->
+    <link rel="stylesheet" media="screen" href="../../css/superfish.css" />
+    <script src="../../js/superfish-1.4.8/js/hoverIntent.js"></script>
+    <script src="../../js/superfish-1.4.8/js/superfish.js"></script>
+    <script src="../../js/superfish-1.4.8/js/supersubs.js"></script>
+    <!-- ENDS superfish -->
+    <!-- prettyPhoto -->
+    <script src="../../js/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+    <link rel="stylesheet" href="../../js/prettyPhoto/css/prettyPhoto.css" media="screen" />
+    <!-- ENDS prettyPhoto -->
+    <!-- poshytip -->
+    <link rel="stylesheet" href="../../js/poshytip-1.1/src/tip-twitter/tip-twitter.css" />
+    <link rel="stylesheet" href="../../js/poshytip-1.1/src/tip-yellowsimple/tip-yellowsimple.css" />
+    <script src="../../js/poshytip-1.1/src/jquery.poshytip.min.js"></script>
+    <!-- ENDS poshytip -->
+    <!-- GOOGLE FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,300' rel='stylesheet'
+        type='text/css'>
+    <!-- Flex Slider -->
+    <link rel="stylesheet" href="../../css/flexslider.css">
+    <script src="../../js/jquery.flexslider-min.js"></script>
+    <!-- ENDS Flex Slider -->
+    <!-- Less framework -->
+    <link rel="stylesheet" media="all" href="../../css/lessframework.css" />
+    <!-- modernizr -->
+    <script src="../../js/modernizr.js"></script>
+    <!-- SKIN -->
+    <link rel="stylesheet" media="all" href="../../css/skin.css" />
+    <!-- reply move form -->
+    <script src="../../js/moveform.js"></script>
+</head>
+<body lang="en">
+    <header class="clearfix">
+        <!-- top widget -->
+        <!-- ENDS top-widget -->
+        <div class="wrapper">
+            <a href="index.html" id="logo">
+                <img src="../../Images/electros.png" alt="Zeni"></a>
+            <nav>
+                <ul id="nav" class="sf-menu">
+                    <li class="current-menu-item">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Product", "Products", "Product")</li>
+                    @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("User"))
+                    {
+                    <li>@Html.ActionLink("Purchased History", "ItemsPurchased", "ItemsPurchased")</li>
+                    <li>@Html.ActionLink("Fault", "ItemsPurchased", "ItemsPurchased")
+                        <ul>
+                                    <li>@Html.ActionLink("Purchased History", "AllItemsPurchased", "ManageReturnsFaults")</li>
+
+                         </ul>
+                    
+                    </li>
+                    }
+                    @if ( Request.IsAuthenticated && HttpContext.Current.User.IsInRole( "Admin" ) )
+                     {
+
+                    <li>@Html.ActionLink("Admin", "ItemsPurchased", "ItemsPurchased")
+                        <ul>
+                            <li>@Html.ActionLink("Update Faults", "ListAllFaults", "UpdateFault")</li>
+                            <li>@Html.ActionLink("List all Faults", "ListAllFaultTrack", "UpdateFault")</li>
+                            <li>@Html.ActionLink("Reports", "Reports", "Reports")
+                                <ul>
+                                    <li>@Html.ActionLink("Highly Rated Item", "HighlyRatedItem", "Reports")</li>
+                                    <li>@Html.ActionLink("Most Purchased Item", "MostPurchasedItem", "Reports")</li>
+                                    <li>@Html.ActionLink("Highest NumberOfFaults", "HighestNumberOfFaults", "Reports")</li>
+                                    <li>@Html.ActionLink("Lowest Number Of Faults", "LeastNumberOfFaults", "Reports")</li>
+                                </ul>
+                                </li>
+                        </ul>
+                    </li>
+                     }
+                </ul>
+                <div style="float: right">@Html.Partial("_LogOnPartial")</div>
+            </nav>
+        </div>
+    </header>
+    <!-- MAIN -->
+    <div id="main">
+        <div class="wrapper clearfix">
+            <!-- page content -->
+            <div id="page-content" class="clearfix">
+                <!-- fullwidth content -->
+                <div class="fullwidth-content">
+                    <h2 class="page-heading">
+                        <span>@ViewBag.Title</span></h2>
+                    @RenderBody()
+                </div>
+                <!-- ends fullwidth content -->
+            </div>
+            <!--  page content-->
+        </div>
+    </div>
+    <!-- ENDS MAIN -->
+    <footer>
+        <div class="wrapper">
+            <div class="footer-bottom">
+                <div class="left">
+                    Website Made By Clementina Cassar ©</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

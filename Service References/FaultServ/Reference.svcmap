@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e14caf68-548d-47c9-b223-1b2a02801fb5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3728/FaultService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="FaultService.xsd" MetadataType="Schema" ID="97beac23-972a-485c-8a85-7bed2f1f6af2" SourceId="1" SourceUrl="http://localhost:3728/FaultService.svc?xsd=xsd3" />
+    <MetadataFile FileName="FaultService1.xsd" MetadataType="Schema" ID="6f6c5540-93c6-4a70-a13a-70cf8a2322f3" SourceId="1" SourceUrl="http://localhost:3728/FaultService.svc?xsd=xsd1" />
+    <MetadataFile FileName="FaultService2.xsd" MetadataType="Schema" ID="1365cb86-7413-4230-ab9a-2d83ea164386" SourceId="1" SourceUrl="http://localhost:3728/FaultService.svc?xsd=xsd2" />
+    <MetadataFile FileName="FaultService.wsdl" MetadataType="Wsdl" ID="1044b193-da22-4bc0-bb1b-efbb05e7154f" SourceId="1" SourceUrl="http://localhost:3728/FaultService.svc?wsdl" />
+    <MetadataFile FileName="FaultService.disco" MetadataType="Disco" ID="2160ead2-1977-46bd-b55b-217791301cf5" SourceId="1" SourceUrl="http://localhost:3728/FaultService.svc?disco" />
+    <MetadataFile FileName="FaultService3.xsd" MetadataType="Schema" ID="f4059286-c5dd-4e1e-b8ef-563c8a6d05d3" SourceId="1" SourceUrl="http://localhost:3728/FaultService.svc?xsd=xsd4" />
+    <MetadataFile FileName="FaultService4.xsd" MetadataType="Schema" ID="7dd89700-70a8-4f10-ba87-9e724f337f4a" SourceId="1" SourceUrl="http://localhost:3728/FaultService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

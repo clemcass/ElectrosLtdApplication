@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="aaa5d3c0-aa96-4075-a97b-a0dcbd8f8988" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3728/FaultTrackService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="FaultTrackService.wsdl" MetadataType="Wsdl" ID="e2b12d3f-3b87-4914-8801-78a6dfff177b" SourceId="1" SourceUrl="http://localhost:3728/FaultTrackService.svc?wsdl" />
+    <MetadataFile FileName="FaultTrackService.xsd" MetadataType="Schema" ID="3d56e5b7-4018-42af-a030-fe3189f0c13c" SourceId="1" SourceUrl="http://localhost:3728/FaultTrackService.svc?xsd=xsd1" />
+    <MetadataFile FileName="FaultTrackService.disco" MetadataType="Disco" ID="bacc8269-3597-4748-95ed-299e18f99470" SourceId="1" SourceUrl="http://localhost:3728/FaultTrackService.svc?disco" />
+    <MetadataFile FileName="FaultTrackService1.xsd" MetadataType="Schema" ID="7684fc23-d50d-487e-9784-0dd0331a9a05" SourceId="1" SourceUrl="http://localhost:3728/FaultTrackService.svc?xsd=xsd0" />
+    <MetadataFile FileName="FaultTrackService2.xsd" MetadataType="Schema" ID="791c0cb9-7a02-4a67-aa0f-a38db6da7ece" SourceId="1" SourceUrl="http://localhost:3728/FaultTrackService.svc?xsd=xsd4" />
+    <MetadataFile FileName="FaultTrackService3.xsd" MetadataType="Schema" ID="d32735f5-39c4-4a07-9eb3-09a835172208" SourceId="1" SourceUrl="http://localhost:3728/FaultTrackService.svc?xsd=xsd3" />
+    <MetadataFile FileName="FaultTrackService4.xsd" MetadataType="Schema" ID="02039087-5470-427d-93f6-99720160e7d4" SourceId="1" SourceUrl="http://localhost:3728/FaultTrackService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

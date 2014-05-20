@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Common.Product>
+
+<table width="1024">
+           <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Features
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Stock
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+               Date Listed
+            </th>
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Features)
+                </td>
+                <td style="text-align: center;">
+                    @*<img width="150" height="150" src ='@Url.Content( "~/Images/"+@item.Image)' />*@
+                    <img width="150" height="150" src ='@Url.Content(@item.Image)' />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                   <td>
+                   
+                    @Html.DisplayFor(modelItem => item.DateListed)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "ProductDetails", new { id = item.ProductId })
+                </td>
+            </tr>
+
+}
+
+</table>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FaultService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3728/FaultService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3728/FaultService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3728/FaultService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Common" />
+      <xsd:import schemaLocation="http://localhost:3728/FaultService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+      <xsd:import schemaLocation="http://localhost:3728/FaultService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IFaultService_OrderItemHasFault_InputMessage">
+    <wsdl:part name="parameters" element="tns:OrderItemHasFault" />
+  </wsdl:message>
+  <wsdl:message name="IFaultService_OrderItemHasFault_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OrderItemHasFaultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFaultService_AddFault_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddFault" />
+  </wsdl:message>
+  <wsdl:message name="IFaultService_AddFault_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddFaultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFaultService_GetAllFaults_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFaults" />
+  </wsdl:message>
+  <wsdl:message name="IFaultService_GetAllFaults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFaultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFaultService_GetLastFault_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastFault" />
+  </wsdl:message>
+  <wsdl:message name="IFaultService_GetLastFault_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastFaultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFaultService_GetFaultById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFaultById" />
+  </wsdl:message>
+  <wsdl:message name="IFaultService_GetFaultById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFaultByIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IFaultService">
+    <wsdl:operation name="OrderItemHasFault">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFaultService/OrderItemHasFault" message="tns:IFaultService_OrderItemHasFault_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFaultService/OrderItemHasFaultResponse" message="tns:IFaultService_OrderItemHasFault_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFault">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFaultService/AddFault" message="tns:IFaultService_AddFault_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFaultService/AddFaultResponse" message="tns:IFaultService_AddFault_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFaults">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFaultService/GetAllFaults" message="tns:IFaultService_GetAllFaults_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFaultService/GetAllFaultsResponse" message="tns:IFaultService_GetAllFaults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastFault">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFaultService/GetLastFault" message="tns:IFaultService_GetLastFault_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFaultService/GetLastFaultResponse" message="tns:IFaultService_GetLastFault_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFaultById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFaultService/GetFaultById" message="tns:IFaultService_GetFaultById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFaultService/GetFaultByIdResponse" message="tns:IFaultService_GetFaultById_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IFaultService" type="tns:IFaultService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="OrderItemHasFault">
+      <soap:operation soapAction="http://tempuri.org/IFaultService/OrderItemHasFault" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFault">
+      <soap:operation soapAction="http://tempuri.org/IFaultService/AddFault" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFaults">
+      <soap:operation soapAction="http://tempuri.org/IFaultService/GetAllFaults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastFault">
+      <soap:operation soapAction="http://tempuri.org/IFaultService/GetLastFault" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFaultById">
+      <soap:operation soapAction="http://tempuri.org/IFaultService/GetFaultById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FaultService">
+    <wsdl:port name="BasicHttpBinding_IFaultService" binding="tns:BasicHttpBinding_IFaultService">
+      <soap:address location="http://localhost:3728/FaultService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

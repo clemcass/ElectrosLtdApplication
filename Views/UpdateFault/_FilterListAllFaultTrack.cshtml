@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Common.FaultTrack>
+
+<table>
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            FaultId
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FaultId)
+        </td>
+
+    </tr>
+}
+
+</table>
+

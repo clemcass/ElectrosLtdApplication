@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fec9682e-ed5e-472c-becd-bbeb61028dd1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3728/GenerateNumbers.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GenerateNumbers.xsd" MetadataType="Schema" ID="678f6c52-e43b-4293-8c42-f08ca24c5659" SourceId="1" SourceUrl="http://localhost:3728/GenerateNumbers.svc?xsd=xsd0" />
+    <MetadataFile FileName="GenerateNumbers.wsdl" MetadataType="Wsdl" ID="d1341402-1d16-434b-83e4-cbefdec27c09" SourceId="1" SourceUrl="http://localhost:3728/GenerateNumbers.svc?wsdl" />
+    <MetadataFile FileName="GenerateNumbers.disco" MetadataType="Disco" ID="ce9c70c8-91fa-4a81-86fa-ab9b6e8ee143" SourceId="1" SourceUrl="http://localhost:3728/GenerateNumbers.svc?disco" />
+    <MetadataFile FileName="GenerateNumbers1.xsd" MetadataType="Schema" ID="c6b3152e-66b8-4d18-ac15-fdecf0d74213" SourceId="1" SourceUrl="http://localhost:3728/GenerateNumbers.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

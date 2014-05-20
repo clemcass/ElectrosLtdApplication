@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Common.OrderItem>
+
+@{
+    ViewBag.Title = "AllItemsPurchased";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Qty
+        </th>
+        <th>
+            Warranty
+        </th>
+        <th>
+            OrderId
+        </th>
+        <th>
+            ProductId
+        </th>
+        <th></th>
+    
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Qty)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.Warranty)*@
+             @Convert.ToDateTime(item.Warranty).ToLongDateString()
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductId)
+        </td>
+        <td>
+            @Html.ActionLink("Generate a ticket number", "GenerateFault", new { id = item.OrderItemId })
+        </td>
+       
+    </tr>
+}
+
+</table>

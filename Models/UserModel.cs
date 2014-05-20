@@ -28,8 +28,15 @@ namespace ElectrosLtdApplication.Models
         public string Email { get; set; }
         public DateTime DOB { get; set; }
         public int TownId { get; set; }
+
+        [Required]
         public string Username { get; set; }
+        [Required]
+        [StringLength(100, ErrorMessage = "The password must be at least {2} characters long.", MinimumLength = 6)]
         public string Password { get; set; }
+        [Required]
+        //[Range(7,9, ErrorMessage = "pin  must be 8 digits")]
+        [RegularExpression(@"^\d{8}$", ErrorMessage = "pin  must be 8 digits")]
         public int Pin { get; set; }
 
         public List<Role> Roles { get; set; }

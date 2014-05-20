@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0fedb27b-19cd-47b6-a83e-ca51b07edbd5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3728/ReviewService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ReviewService.xsd" MetadataType="Schema" ID="99e8c6bf-2945-4491-b519-5acf37fefe95" SourceId="1" SourceUrl="http://localhost:3728/ReviewService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ReviewService1.xsd" MetadataType="Schema" ID="56fa76e4-d558-4bb4-887a-34b6540152c0" SourceId="1" SourceUrl="http://localhost:3728/ReviewService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ReviewService.wsdl" MetadataType="Wsdl" ID="1a9ad8c4-884b-4c0e-b9b2-b47067371ae6" SourceId="1" SourceUrl="http://localhost:3728/ReviewService.svc?wsdl" />
+    <MetadataFile FileName="ReviewService2.xsd" MetadataType="Schema" ID="b802766e-7d04-4fbd-ad11-04849cb3c1ef" SourceId="1" SourceUrl="http://localhost:3728/ReviewService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ReviewService3.xsd" MetadataType="Schema" ID="855deb7c-8560-4acf-9869-a05c447685b5" SourceId="1" SourceUrl="http://localhost:3728/ReviewService.svc?xsd=xsd4" />
+    <MetadataFile FileName="ReviewService.disco" MetadataType="Disco" ID="9692011a-8d3e-4682-8968-67be6dfbf11e" SourceId="1" SourceUrl="http://localhost:3728/ReviewService.svc?disco" />
+    <MetadataFile FileName="ReviewService4.xsd" MetadataType="Schema" ID="ca633d79-dd3b-40f3-ad69-c4442ca8d714" SourceId="1" SourceUrl="http://localhost:3728/ReviewService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

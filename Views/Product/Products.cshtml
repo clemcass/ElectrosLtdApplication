@@ -1,66 +1,138 @@
 ﻿@model IEnumerable<Common.Product>
-
-
 @{
     ViewBag.Title = "Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="../../Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript">
 
-<h2>Product</h2>
+
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            Filter();
+            return false;
+        }
+    });
+
+    function Filter() {
 
 
-<table width="1024">
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Features
-        </th>
-        <th>
-            Image
-        </th>
-        <th>
-            Stock
-        </th>
-        <th>
-            Price
-        </th>
-        <th>
-            Category
-        </th>
-        <th></th>
-    </tr>
+        var from = $("#slider-range").slider("values", 0)
+        var to = $("#slider-range").slider("values", 1)
+        var date = $("#txtDateListed").val();
+        var sort = $("#ddl option:selected").text()
+        var search = document.getElementById('txtSearch').value;
 
-@foreach (var item in Model) {
-    <tr>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Features)
-        </td>
-        <td>
-            @*<img width="150" height="150" src ='@Url.Content( "~/Images/"+@item.Image)' />*@
-            <img width="150" height="150" src ='@Url.Content(@item.Image)' />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stock)
-        </td>
+        $.ajax({
+            url: '/Product/FilterProducts/',
+            data: { search: search, from: from, to: to,date:date,sort:sort },
+            type: "GET",
+            dataType: 'Html',
+            cache: false,
+            success: function (data) {
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "ProductDetails", new { id = item.ProductId }) 
-            
-          
-        </td>
-    </tr>
-}
+                $("#products").empty();
+                $("#products").append(data);
 
-</table>
+
+            }
+        });
+    }
+
+
+    $(function () {
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 1000,
+
+            slide: function (event, ui) {
+                $("#amount").val("€" + ui.values[0] + " - €" + ui.values[1]);
+            }
+        });
+        $("#amount").val("€" + $("#slider-range").slider("values", 0) +
+      " - €" + $("#slider-range").slider("values", 1));
+    });
+
+    $(function () {
+        $("#txtDateListed").datepicker();
+    
+    });
+
+
+</script>
+<p>
+<input type="text" id="txtSearch">
+<label for="amount">
+    Price range:</label>
+ 
+<input type="text" id="amount" style="border: 0; font-weight: bold;">
+    Date:<input type="text" id="txtDateListed">  @Html.DropDownList("ddl","Select")
+    </p>
+    <p>
+    
+<div id="slider-range">
+</div></p>
+<div id="products">
+    <table width="1024">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Features
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Stock
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+               Date Listed
+            </th>
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Features)
+                </td>
+                <td style="text-align: center;">
+                    @*<img width="150" height="150" src ='@Url.Content( "~/Images/"+@item.Image)' />*@
+                    <img width="150" height="150" src ='@Url.Content(@item.Image)' />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                   <td>
+                   
+                    @Html.DisplayFor(modelItem => item.DateListed)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "ProductDetails", new { id = item.ProductId })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

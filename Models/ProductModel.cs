@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace ElectrosLtdApplication.Models
 {
@@ -20,6 +21,7 @@ namespace ElectrosLtdApplication.Models
         public string Features { get; set; }
         public string Image { get; set; }
         public int Stock { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime DateListed { get; set; } 
         public decimal Price { get; set; }
         public int CategoryId { get; set; }

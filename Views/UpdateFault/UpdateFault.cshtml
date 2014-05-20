@@ -1,0 +1,71 @@
+﻿@model ElectrosLtdApplication.Models.FaultTrackModel
+
+@{
+    ViewBag.Title = "UpdateFault";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table>
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            FaultId
+        </th>
+    </tr>
+
+@foreach (var item in Model.FaultTrackList) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FaultId)
+        </td>
+
+    </tr>
+}
+
+</table>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Fault</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Description)
+        </div>
+
+        @Html.HiddenFor(model => model.FaultId)
+        
+
+      <div class="editor-label">
+            @Html.LabelFor(model => model.Type)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Type, ElectrosLtdApplication.Controllers.UpdateFaultController.GetDropDown(), "Select Status")
+        </div>
+
+        <p>
+            <input type="submit" value="Create"  />
+        </p>
+    </fieldset>
+}

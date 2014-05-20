@@ -1,11 +1,15 @@
-﻿@if(Request.IsAuthenticated) {
+﻿
+@if(Request.IsAuthenticated) {
     <text>Welcome <strong>@User.Identity.Name</strong>!
     [ @Html.ActionLink("Log Off", "LogOff", "UserAuthentication") ]</text>
 }
 else {
     @:[ @Html.ActionLink("Log On", "Login", "UserAuthentication") ]
     
-
-    
 }
+
+ @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("User"))
+ {
+@Html.ActionLink("Shopping Cart", "ShoppingCart", "ShoppingCart")   <br />
+ }
 

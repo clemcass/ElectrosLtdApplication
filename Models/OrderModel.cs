@@ -15,6 +15,9 @@ namespace ElectrosLtdApplication.Models
         public bool IsPending { get; set; }
         public bool IsShipped { get; set; }
 
+
+        public decimal Total { get; set; }
+
         public virtual User Person { get; set; }
         public virtual ICollection<OrderItem> OrderItem { get; set; }
     }

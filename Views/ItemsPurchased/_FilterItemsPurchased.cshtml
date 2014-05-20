@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Common.OrderItem>
+
+
+<table>
+    <tr>
+        <th>
+            Order Item Id
+        </th>
+        <th>
+            Qty
+        </th>
+        <th>
+            Warranty
+        </th>
+        <th>
+            OrderId
+        </th>
+        <th>
+            ProductId
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderItemId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Qty)
+        </td>
+        <td>
+           @* @Html.DisplayFor(modelItem => item.Warranty)*@
+           @Convert.ToDateTime(item.Warranty).ToLongDateString()
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductId)
+        </td>
+       <td>
+            @Html.ActionLink("Details", "Details", new { id = item.OrderItemId }) 
+            @* @Html.ActionLink("Print", "Print", new { id = item.OrderItemId }) *@
+            <a href='#' onclick='OnButtonClick(@item.OrderItemId)'>Print</a>
+        </td>
+    </tr>
+}
+
+</table>
+
+<script type="text/javascript">
+
+    function OnButtonClick(x) {
+
+
+        var start = $("#txtStartDate").val();
+
+        var end = $("#txtEndDate").val();
+
+        $.ajax({
+            url: '/ItemsPurchased/Print/',
+            data: { id: x, start: start, end: end },
+            type: "POST",
+            dataType: 'Html',
+            cache: false,
+            success: function (data) {
+
+
+            }
+        });
+
+    }
+ </script>

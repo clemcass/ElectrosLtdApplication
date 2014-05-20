@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Common.FaultTrack>
+
+@{
+    ViewBag.Title = "ListAllFaultTrack";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="../../Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript">
+
+
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            Filter();
+            return false;
+        }
+    });
+
+    $(function () {
+        $("#txtStartDate").datepicker();
+        $("#txtEndDate").datepicker();
+
+    });
+
+    function Filter() {
+
+        var from = $("#txtStartDate").val();
+        var to = $("#txtEndDate").val();
+
+        var clientId = $("#Users option:selected").text()
+
+        var faultId = $("#Faults option:selected").text()
+        var sort = $("#ddl option:selected").text()
+
+        $.ajax({
+            url: '/UpdateFault/FilterFault/',
+            data: { from: from, to: to, clientId: clientId, faultId: faultId, sort :sort },
+            type: "POST",
+            dataType: 'Html',
+            cache: false,
+            success: function (data) {
+
+                //                $("#products").empty();
+                //                $("#products").append(data);
+
+
+            }
+        });
+    }
+
+
+
+
+
+
+ </script>
+ <p>Date: <input type="text" id="txtStartDate"> Date: <input type="text" id="txtEndDate"> 
+ 
+      @Html.DropDownList("Users","Select")
+      @Html.DropDownList("Faults", "Select")
+      @Html.DropDownList("ddl","Select")
+ 
+
+<p>
+
+
+<table>
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            FaultId
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FaultId)
+        </td>
+
+    </tr>
+}
+
+</table>

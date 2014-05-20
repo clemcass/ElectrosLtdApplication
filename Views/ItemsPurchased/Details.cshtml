@@ -1,0 +1,83 @@
+﻿@*@model Common.OrderItem*@
+
+@model ElectrosLtdApplication.Models.FaultModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<fieldset>
+    <legend>Order No : @Model.OrderItem.OrderItemId</legend>
+    <div class="display-label">Features</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OrderItem.Product.Features)
+    </div>
+
+    <div class="display-label">Qty</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OrderItem.Qty)
+    </div>
+    <div class="display-label">Date Purchased</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OrderItem.Order.DateTime)
+        @Convert.ToDateTime(Model.OrderItem.Order.DateTime).ToLongDateString()
+    </div>
+    <div class="display-label">Warranty</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OrderItem.Warranty)
+    </div>
+
+    <div class="display-label">OrderId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OrderItem.OrderId)
+    </div>
+
+    <div class="display-label">ProductId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OrderItem.Product.Name)
+        <img width="300" height="300" src="@Url.Content(Model.OrderItem.Product.Image)" alt="Image" />
+    </div>
+
+   <table>
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            FaultId
+        </th>
+    </tr>
+
+@foreach (var item in Model.FaultTrackList)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FaultTrackId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FaultId)
+        </td>
+
+    </tr>
+}
+
+</table>
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "ItemsPurchased")
+</p>

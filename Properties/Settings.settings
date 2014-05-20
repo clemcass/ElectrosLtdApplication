@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ElectrosLtdApplication.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ElectrosLtdApplication_BarCodeServ_BarCode" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.webservicex.net/genericbarcode.asmx</Value>
+    </Setting>
+    <Setting Name="ElectrosLtdApplication_SmsServ_ClickatellSms" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://api.clickatell.com/soap/document_literal/webservice.php</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
