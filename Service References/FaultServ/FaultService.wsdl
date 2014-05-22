@@ -39,6 +39,12 @@
   <wsdl:message name="IFaultService_GetFaultById_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetFaultByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IFaultService_Filter_InputMessage">
+    <wsdl:part name="parameters" element="tns:Filter" />
+  </wsdl:message>
+  <wsdl:message name="IFaultService_Filter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FilterResponse" />
+  </wsdl:message>
   <wsdl:portType name="IFaultService">
     <wsdl:operation name="OrderItemHasFault">
       <wsdl:input wsaw:Action="http://tempuri.org/IFaultService/OrderItemHasFault" message="tns:IFaultService_OrderItemHasFault_InputMessage" />
@@ -59,6 +65,10 @@
     <wsdl:operation name="GetFaultById">
       <wsdl:input wsaw:Action="http://tempuri.org/IFaultService/GetFaultById" message="tns:IFaultService_GetFaultById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFaultService/GetFaultByIdResponse" message="tns:IFaultService_GetFaultById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Filter">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFaultService/Filter" message="tns:IFaultService_Filter_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFaultService/FilterResponse" message="tns:IFaultService_Filter_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IFaultService" type="tns:IFaultService">
@@ -101,6 +111,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetFaultById">
       <soap:operation soapAction="http://tempuri.org/IFaultService/GetFaultById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Filter">
+      <soap:operation soapAction="http://tempuri.org/IFaultService/Filter" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

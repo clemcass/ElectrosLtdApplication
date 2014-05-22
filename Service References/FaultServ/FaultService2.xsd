@@ -6,6 +6,7 @@
       <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q1:EntityObject">
         <xs:sequence>
           <xs:element minOccurs="0" name="Barcode" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="FaultId" type="xs:int" />
           <xs:element minOccurs="0" name="FaultTrack" nillable="true" type="tns:ArrayOfFaultTrack" />

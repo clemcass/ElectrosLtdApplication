@@ -12,7 +12,7 @@ namespace ElectrosLtdApplication.Controllers
         public ActionResult Index()
         {
             ViewBag.Logo = "Electros Ltd";
-           
+
             return View();
         }
 

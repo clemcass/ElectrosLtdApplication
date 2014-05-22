@@ -29,13 +29,17 @@
      <input type="submit" value="Filter" id="button" />   
 }*@
 
+<div id="update-message" style='color:red'>
+@ViewBag.Message
+</div>
+
   <p>Date: <input type="text" id="txtStartDate"></p>
   <p>Date: <input type="text" id="txtEndDate"></p>
   <input type="submit" onclick='OnDateClick()' value="Filter" id="button" />   
        
 
  <div id="itemsPurchased">
-<table>
+<table width="600" style="text-align:center;">
     <tr>
         <th>
             Order Item Id
@@ -77,8 +81,8 @@
 
         <td>
             @Html.ActionLink("Details", "Details", new { id = item.OrderItemId }) 
-            @* @Html.ActionLink("Print", "Print", new { id = item.OrderItemId }) *@
-            <a href='#' onclick='OnButtonClick(@item.OrderItemId)'>Print</a>
+             @Html.ActionLink("Print", "Print", new { id = item.OrderItemId }) 
+            <a href='#' onclick='OnButtonClick(@item.OrderItemId)'>Send Email</a>
         </td>
     </tr>
 }
@@ -96,7 +100,7 @@
         var end = $("#txtEndDate").val();
 
         $.ajax({
-            url: 'Print/',
+            url: 'SendEmail/',
             data: { id: x, start: start, end: end },
             type: "POST",
             dataType: 'Html',

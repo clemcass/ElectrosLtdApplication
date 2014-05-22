@@ -14,7 +14,7 @@ namespace ElectrosLtdApplication.Models
         public Byte[] Barcode { get; set; }
         public string Details { get; set; }
         public int OrderItemId  { get; set; }
-
+        public DateTime Date { get; set; }
 
         public virtual OrderItem OrderItem { get; set; }
         public virtual ICollection<FaultTrack> FaultTrack { get; set; }

@@ -36,7 +36,7 @@ namespace ElectrosLtdApplication.Models
         public string Password { get; set; }
         [Required]
         //[Range(7,9, ErrorMessage = "pin  must be 8 digits")]
-        [RegularExpression(@"^\d{8}$", ErrorMessage = "pin  must be 8 digits")]
+        [RegularExpression(@"^\d{4}$", ErrorMessage = "pin  must be 4 digits")]
         public int Pin { get; set; }
 
         public List<Role> Roles { get; set; }

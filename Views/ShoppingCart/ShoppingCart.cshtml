@@ -55,19 +55,21 @@
     @Html.ActionLink("Checkout >>", "CheckOut", "ShoppingCart")
 </p>
 <div id="update-message" style='color:red'>
+@ViewBag.Message
 </div>
-<table>
+<table style="text-align:center;">
     <tr>
         <th>
             Name
         </th>
-        <th>
-           
+        <th> 
         </th>
         <th>
             Unit Price
         </th>
-       
+       <th>
+            Price 
+        </th>
         <th>
             Quantity
         </th>
@@ -90,6 +92,9 @@
             <td>
                  @String.Format("{0:F}", item.Product.Price)
             </td>
+             <td>
+               @String.Format("{0:F}", item.Product.Price * item.Qty)
+            </td>
             <td>
              <input id="txtQuantity" type="text" runat="server" value="@item.Qty" />
              
@@ -105,7 +110,7 @@
     }
     <tr>
         <td>
-            Total
+           
         </td>
         <td>
         </td>

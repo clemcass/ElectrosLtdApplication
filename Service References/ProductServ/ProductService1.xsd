@@ -112,4 +112,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAllCategory">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllCategoryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="GetAllCategoryResult" nillable="true" type="q8:ArrayOfCategory" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

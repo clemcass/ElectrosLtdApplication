@@ -7,41 +7,47 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div id="update-message" style='color:red'>
+@ViewBag.Message
+</div>
+
 
 
 <fieldset>
-    <legend>Order No : @Model.OrderItem.OrderItemId</legend>
-    <div class="display-label">Features</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.OrderItem.Product.Features)
+     <legend>Order No : @Model.OrderItem.OrderItemId</legend>
+   
+   <div style="height:100%;width:50%;float:left;padding:0; text-align: center;">
+   
+    <div class="display-label">Features @Html.DisplayFor(model => model.OrderItem.Product.Features)
     </div>
 
-    <div class="display-label">Qty</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.OrderItem.Qty)
+    <div class="display-label">Qty @Html.DisplayFor(model => model.OrderItem.Qty)
     </div>
-    <div class="display-label">Date Purchased</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.OrderItem.Order.DateTime)
-        @Convert.ToDateTime(Model.OrderItem.Order.DateTime).ToLongDateString()
+    <div class="display-label">Date Purchased  @Convert.ToDateTime(Model.OrderItem.Order.DateTime).ToShortDateString()
     </div>
-    <div class="display-label">Warranty</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.OrderItem.Warranty)
+    <div class="display-label">Warranty  @Html.DisplayFor(model => model.OrderItem.Warranty)
     </div>
 
-    <div class="display-label">OrderId</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.OrderItem.OrderId)
+    <div class="display-label">OrderId @Html.DisplayFor(model => model.OrderItem.OrderId)
     </div>
 
-    <div class="display-label">ProductId</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.OrderItem.Product.Name)
-        <img width="300" height="300" src="@Url.Content(Model.OrderItem.Product.Image)" alt="Image" />
-    </div>
+    <div class="display-label">Name @Html.DisplayFor(model => model.OrderItem.Product.Name)
+      
+   
+     </div>
+     </div>
+ 
 
+<div  style="height:100%;width:50%;float:right;padding:0; text-align: center;">
+    
+           <img width="300" height="300" src="@Url.Content(Model.OrderItem.Product.Image)" alt="Image" />
+
+          <br />
+          <br />
+          
    <table>
+   @if (ViewBag.Found == true)
+{
     <tr>
         <th>
             Date
@@ -56,9 +62,13 @@
             FaultId
         </th>
     </tr>
+    }
 
-@foreach (var item in Model.FaultTrackList)
+@if (ViewBag.Found == true)
 {
+
+    foreach (var item in Model.FaultTrackList)
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.FaultTrackId)
@@ -74,9 +84,15 @@
         </td>
 
     </tr>
+    }
 }
 
 </table>
+</div>
+          <br />
+</div>
+
+
 </fieldset>
 <p>
     @Html.ActionLink("Back to List", "ItemsPurchased")

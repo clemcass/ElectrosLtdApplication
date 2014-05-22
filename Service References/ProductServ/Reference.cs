@@ -38,6 +38,9 @@ namespace ElectrosLtdApplication.ProductServ {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/GetByDateListed", ReplyAction="http://tempuri.org/IProductService/GetByDateListedResponse")]
         Common.Product[] GetByDateListed(System.DateTime date);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/GetAllCategory", ReplyAction="http://tempuri.org/IProductService/GetAllCategoryResponse")]
+        Common.Category[] GetAllCategory();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -97,6 +100,10 @@ namespace ElectrosLtdApplication.ProductServ {
         
         public Common.Product[] GetByDateListed(System.DateTime date) {
             return base.Channel.GetByDateListed(date);
+        }
+        
+        public Common.Category[] GetAllCategory() {
+            return base.Channel.GetAllCategory();
         }
     }
 }

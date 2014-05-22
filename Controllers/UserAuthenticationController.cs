@@ -30,21 +30,32 @@ namespace ElectrosLtdApplication.Controllers
 
         public ActionResult Login(UserModel data)
         {
-            string pin = data.Pin.ToString();
-           string enteredPass = new UserServ.UserServiceClient().Decrypt(data.Password, pin);
-
-            User user = new UserServ.UserServiceClient().getUserByUsername(data.Username);
-            
-
-            if (enteredPass == user.Password)
+            try
             {
-                FormsAuthentication.RedirectFromLoginPage(data.Username, true);
-                return RedirectToAction("Index", "Home");
 
+                string pin = data.Pin.ToString();
+                // string enteredPass = ;
+
+                User user = new UserServ.UserServiceClient().getUserByUsername(data.Username);
+                string passwordDec = new UserServ.UserServiceClient().Decrypt(data.Password, pin);
+
+                if (passwordDec == user.Password && user != null)
+                {
+                    FormsAuthentication.RedirectFromLoginPage(data.Username, true);
+                    return RedirectToAction("Index", "Home");
+
+
+                }
+
+                else
+                {
+
+                    return View();
+                }
             }
-
-            else
+            catch (Exception e)
             {
+
 
                 return View();
             }
@@ -56,7 +67,7 @@ namespace ElectrosLtdApplication.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-       
+
 
     }
 }

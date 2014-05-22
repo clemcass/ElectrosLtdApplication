@@ -13,8 +13,10 @@ namespace ElectrosLtdApplication.Models
         public Nullable<int> Qty { get; set; }
         public int OrderId { get; set; }
 
-        public decimal UnitPrice { get; set; }
-        public decimal TotalPrice { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+
+        public List<OrderItem> ListOfOrderItem { get; set; }
 
         public virtual Order Order { get; set; }
 

@@ -5,12 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<div id="update-message" style='color:red'>
+@ViewBag.Message
+</div>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
+<table style="text-align:center;">
     <tr>
         <th>
             Qty

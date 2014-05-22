@@ -44,8 +44,7 @@
 
     function submitRating(id, p) 
     {
-        alert(id);
-        alert(p);
+        alert("Thank you for your rating!");
         if (p > 0) {
 
             $.ajax({
@@ -70,7 +69,11 @@
 </script>
 
 <div id="update-message" style='color:red'>
+@ViewBag.Message
 </div>
+
+
+
 
 <fieldset>
     <legend>Details</legend>
@@ -100,43 +103,43 @@ Select Rating :
 
 @if (ViewBag.Avg > 0)
 {
-    <img src="../../Images/rate1.png" id="R1" alt="0" title="Not at All"/>
+    <img src="../../Images/rate1.png" id="R1" alt="0" title="1 Star"/>
 }
 else
 {
-    <img src="../../Images/rate0.png" id="R1" alt="0" title="Not at All"/>
+    <img src="../../Images/rate0.png" id="R1" alt="0" title="1 Star"/>
 }
 @if (ViewBag.Avg > 1)
 {
-    <img src="../../Images/rate1.png" id="R2" alt="0" title="Not at All"/>
+    <img src="../../Images/rate1.png" id="R2" alt="0" title="2 Star"/>
 }
 else
 {
-    <img src="../../Images/rate0.png" id="R2" alt="0" title="Not at All"/>
+    <img src="../../Images/rate0.png" id="R2" alt="0" title="2 Star"/>
 }
 @if (ViewBag.Avg > 2)
 {
-    <img src="../../Images/rate1.png" id="R3" alt="0" title="Not at All"/>
+    <img src="../../Images/rate1.png" id="R3" alt="0" title="3 Star"/>
 }
 else
 {
-    <img src="../../Images/rate0.png" id="R3" alt="0" title="Not at All"/>
+    <img src="../../Images/rate0.png" id="R3" alt="0" title="3 Star"/>
 }
 @if (ViewBag.Avg > 3)
 {
-    <img src="../../Images/rate1.png" id="R4" alt="0" title="Not at All"/>
+    <img src="../../Images/rate1.png" id="R4" alt="0" title="4 Star"/>
 }
 else
 {
-    <img src="../../Images/rate0.png" id="R4" alt="0" title="Not at All"/>
+    <img src="../../Images/rate0.png" id="R4" alt="0" title="4 Star"/>
 }
 @if (ViewBag.Avg > 4)
 {
-    <img src="../../Images/rate1.png" id="R5" alt="0" title="Very Good"/>
+    <img src="../../Images/rate1.png" id="R5" alt="0" title="5 Star"/>
 }
 else
 {
-    <img src="../../Images/rate0.png" id="R5" alt="0" title="Very Good"/>
+    <img src="../../Images/rate0.png" id="R5" alt="0" title="5 Star"/>
 }
 
 @*<img src="../../Images/rate0.png" id="R2" alt="1" title="Somewhat" />
@@ -177,7 +180,7 @@ else
       </div>
       
   }
- )
+ 
  
   @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("User")){
                    

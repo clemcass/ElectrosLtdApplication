@@ -29,6 +29,9 @@ namespace ElectrosLtdApplication.FaultServ {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFaultService/GetFaultById", ReplyAction="http://tempuri.org/IFaultService/GetFaultByIdResponse")]
         Common.Fault GetFaultById(int faultId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFaultService/Filter", ReplyAction="http://tempuri.org/IFaultService/FilterResponse")]
+        Common.Fault[] Filter(System.Nullable<int> clientId, System.Nullable<int> faultId, System.Nullable<System.DateTime> from, System.Nullable<System.DateTime> to);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -76,6 +79,10 @@ namespace ElectrosLtdApplication.FaultServ {
         
         public Common.Fault GetFaultById(int faultId) {
             return base.Channel.GetFaultById(faultId);
+        }
+        
+        public Common.Fault[] Filter(System.Nullable<int> clientId, System.Nullable<int> faultId, System.Nullable<System.DateTime> from, System.Nullable<System.DateTime> to) {
+            return base.Channel.Filter(clientId, faultId, from, to);
         }
     }
 }

@@ -24,236 +24,268 @@ namespace ElectrosLtdApplication.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult HighlyRatedItem()
         {
-            List<Rate> rates = new ReportServ.ReportsServiceClient().HighlyRatedItem().ToList();
-            Rate r = rates.First();
-            Product p = new ProductServ.ProductServiceClient().GetProductById(r.ProductId);
+            try
+            {
+                List<Rate> rates = new ReportServ.ReportsServiceClient().HighlyRatedItem().ToList();
+                Rate r = rates.First();
+                Product p = new ProductServ.ProductServiceClient().GetProductById(r.ProductId);
 
 
-            // Create a Document object
-            var document = new Document(PageSize.A4, 50, 50, 25, 25);
+                // Create a Document object
+                var document = new Document(PageSize.A4, 50, 50, 25, 25);
 
-            // Create a new PdfWriter object, specifying the output stream
-            var output = new System.IO.MemoryStream();
-            var writer = PdfWriter.GetInstance(document, output);
+                // Create a new PdfWriter object, specifying the output stream
+                var output = new System.IO.MemoryStream();
+                var writer = PdfWriter.GetInstance(document, output);
 
-            // Open the Document for writing
-            document.Open();
-
-
-            var titleFont = FontFactory.GetFont("Arial", 18, Font.BOLD);
-            var subTitleFont = FontFactory.GetFont("Arial", 14, Font.BOLD);
-            var boldTableFont = FontFactory.GetFont("Arial", 12, Font.BOLD);
-            var endingMessageFont = FontFactory.GetFont("Arial", 10, Font.ITALIC);
-            var bodyFont = FontFactory.GetFont("Arial", 12, Font.NORMAL);
-
-            document.Add(new Paragraph("Highly Rated Item", titleFont));
+                // Open the Document for writing
+                document.Open();
 
 
+                var titleFont = FontFactory.GetFont("Arial", 18, Font.BOLD);
+                var subTitleFont = FontFactory.GetFont("Arial", 14, Font.BOLD);
+                var boldTableFont = FontFactory.GetFont("Arial", 12, Font.BOLD);
+                var endingMessageFont = FontFactory.GetFont("Arial", 10, Font.ITALIC);
+                var bodyFont = FontFactory.GetFont("Arial", 12, Font.NORMAL);
 
-            document.Add(new Paragraph(""));
-            document.Add(new Paragraph(""));
-            document.Add(new Paragraph(""));
-
-            Image logo = Image.GetInstance(Server.MapPath("~" + p.Image.ToString()));
-            logo.ScaleToFit(200,200);
-            logo.HasBorder(200);
-            logo.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
-            document.Add(logo);
-
-            var orderInfoTable = new PdfPTable(6);
-
-            orderInfoTable.HorizontalAlignment = 0;
-            orderInfoTable.SpacingBefore = 10;
-            orderInfoTable.SpacingAfter = 10;
-            orderInfoTable.DefaultCell.Border = 0;
-            
-
-            
-            orderInfoTable.AddCell(new Phrase("Name:", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Features:", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Stock:", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Price", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Date Listed", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Category", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Image", boldTableFont));
-
-            orderInfoTable.AddCell(p.Name);
-            orderInfoTable.AddCell(p.Features);
-            orderInfoTable.AddCell(p.Stock.ToString());
-            decimal price = p.Price;
-            orderInfoTable.AddCell(price.ToString());
-            orderInfoTable.AddCell(p.DateListed.ToString());
-           
-            orderInfoTable.AddCell(p.Category.Name);
-           //razorpdf.pdfresult
-            //.Value.ToShortDateString()
-          
-            document.Add(orderInfoTable);
-   // @Server.MapPath("~/images/" +  @Model.Image )"
-            
-           // logo.SetAbsolutePosition(800, 800);
-            
-
-            document.Close();
-
-            Response.ContentType = "application/pdf";
-            //  Response.AddHeader("Content-Disposition", string.Format("attachment;filename=Receipt-{0}.pdf", fm.OrderItemId.ToString()));
-            Response.BinaryWrite(output.ToArray());
+                var logo = iTextSharp.text.Image.GetInstance(Server.MapPath("~/Images/logo.jpg"));
+                logo.SetAbsolutePosition(440, 800);
+                document.Add(logo);
 
 
-            return View("Reports");
+                document.Add(new Paragraph("Highly Rated Item", titleFont));
+
+
+
+                document.Add(new Paragraph(""));
+                document.Add(new Paragraph(""));
+                document.Add(new Paragraph(""));
+
+                Image logoI = Image.GetInstance(Server.MapPath("~" + p.Image.ToString()));
+                logoI.ScaleToFit(200, 200);
+                logoI.HasBorder(200);
+                logoI.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
+                document.Add(logoI);
+
+                var orderInfoTable = new PdfPTable(6);
+
+                orderInfoTable.HorizontalAlignment = 0;
+                orderInfoTable.SpacingBefore = 10;
+                orderInfoTable.SpacingAfter = 10;
+                orderInfoTable.DefaultCell.Border = 0;
+
+
+
+                orderInfoTable.AddCell(new Phrase("Name:", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Features:", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Stock:", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Price", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Date Listed", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Category", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Image", boldTableFont));
+
+                orderInfoTable.AddCell(p.Name);
+                orderInfoTable.AddCell(p.Features);
+                orderInfoTable.AddCell(p.Stock.ToString());
+                decimal price = p.Price;
+                orderInfoTable.AddCell(price.ToString());
+                orderInfoTable.AddCell(p.DateListed.ToShortDateString());
+
+                orderInfoTable.AddCell(p.Category.Name);
+                //razorpdf.pdfresult
+                //.Value.ToShortDateString()
+
+                document.Add(orderInfoTable);
+                // @Server.MapPath("~/images/" +  @Model.Image )"
+
+                // logo.SetAbsolutePosition(800, 800);
+
+
+                document.Close();
+
+                Response.ContentType = "application/pdf";
+                //  Response.AddHeader("Content-Disposition", string.Format("attachment;filename=Receipt-{0}.pdf", fm.OrderItemId.ToString()));
+                Response.BinaryWrite(output.ToArray());
+
+
+                return View("Reports");
+            }
+            catch (Exception e)
+            {
+
+                ViewBag.Message = "Sorry there seems to be a problem"; 
+                return View("Reports");
+            }
         }
 
         [Authorize(Roles = "Admin")]
         public ActionResult MostPurchasedItem()
         {
-            List<OrderItem> orderItem = new ReportServ.ReportsServiceClient().MostPurchasedItem().ToList();
-            OrderItem o = orderItem.First();
-            Product p = new ProductServ.ProductServiceClient().GetProductById(o.ProductId);
+            try
+            {
+                List<OrderItem> orderItem = new ReportServ.ReportsServiceClient().MostPurchasedItem().ToList();
+                OrderItem o = orderItem.First();
+                Product p = new ProductServ.ProductServiceClient().GetProductById(o.ProductId);
 
 
-            // Create a Document object
-            var document = new Document(PageSize.A4, 50, 50, 25, 25);
+                // Create a Document object
+                var document = new Document(PageSize.A4, 50, 50, 25, 25);
 
-            // Create a new PdfWriter object, specifying the output stream
-            MemoryStream memoryStream = new MemoryStream();
-            PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
+                // Create a new PdfWriter object, specifying the output stream
+                MemoryStream memoryStream = new MemoryStream();
+                PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
 
-            // Open the Document for writing
-            document.Open();
-
-
-            var titleFont = FontFactory.GetFont("Arial", 18, Font.BOLD);
-            var subTitleFont = FontFactory.GetFont("Arial", 14, Font.BOLD);
-            var boldTableFont = FontFactory.GetFont("Arial", 12, Font.BOLD);
-            var endingMessageFont = FontFactory.GetFont("Arial", 10, Font.ITALIC);
-            var bodyFont = FontFactory.GetFont("Arial", 12, Font.NORMAL);
-
-            document.Add(new Paragraph("Most Item Purchased", titleFont));
+                // Open the Document for writing
+                document.Open();
 
 
+                var titleFont = FontFactory.GetFont("Arial", 18, Font.BOLD);
+                var subTitleFont = FontFactory.GetFont("Arial", 14, Font.BOLD);
+                var boldTableFont = FontFactory.GetFont("Arial", 12, Font.BOLD);
+                var endingMessageFont = FontFactory.GetFont("Arial", 10, Font.ITALIC);
+                var bodyFont = FontFactory.GetFont("Arial", 12, Font.NORMAL);
 
-            document.Add(new Paragraph(""));
-            document.Add(new Paragraph(""));
-            document.Add(new Paragraph(""));
+                var logo = iTextSharp.text.Image.GetInstance(Server.MapPath("~/Images/logo.jpg"));
+                logo.SetAbsolutePosition(440, 800);
+                document.Add(logo);
 
-            Image logo = Image.GetInstance(Server.MapPath("~" + p.Image.ToString()));
-            logo.ScaleToFit(200, 200);
-            logo.HasBorder(200);
-            logo.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
-            document.Add(logo);
-
-            var orderInfoTable = new PdfPTable(6);
-
-            orderInfoTable.HorizontalAlignment = 0;
-            orderInfoTable.SpacingBefore = 10;
-            orderInfoTable.SpacingAfter = 10;
-            orderInfoTable.DefaultCell.Border = 0;
+                document.Add(new Paragraph("Most Item Purchased", titleFont));
 
 
 
-            orderInfoTable.AddCell(new Phrase("Name:", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Features:", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Stock:", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Price", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Date Listed", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Category", boldTableFont));
+                document.Add(new Paragraph(""));
+                document.Add(new Paragraph(""));
+                document.Add(new Paragraph(""));
 
-            orderInfoTable.AddCell(p.Name);
-            orderInfoTable.AddCell(p.Features);
-            orderInfoTable.AddCell(p.Stock.ToString());
-            decimal price = p.Price;
-            orderInfoTable.AddCell(price.ToString());
-            orderInfoTable.AddCell(p.DateListed.ToString());
+                Image logoI = Image.GetInstance(Server.MapPath("~" + p.Image.ToString()));
+                logoI.ScaleToFit(200, 200);
+                logoI.HasBorder(200);
+                logoI.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
+                document.Add(logoI);
 
-            orderInfoTable.AddCell(p.Category.Name);
-            //razorpdf.pdfresult
-            //.Value.ToShortDateString()
+                var orderInfoTable = new PdfPTable(6);
 
-            document.Add(orderInfoTable);
-            // @Server.MapPath("~/images/" +  @Model.Image )"
-
-            // logo.SetAbsolutePosition(800, 800);
+                orderInfoTable.HorizontalAlignment = 0;
+                orderInfoTable.SpacingBefore = 10;
+                orderInfoTable.SpacingAfter = 10;
+                orderInfoTable.DefaultCell.Border = 0;
 
 
-            document.Close();
 
-            Response.ContentType = "application/pdf";
-            //  Response.AddHeader("Content-Disposition", string.Format("attachment;filename=Receipt-{0}.pdf", fm.OrderItemId.ToString()));
-            Response.BinaryWrite(memoryStream.ToArray());
+                orderInfoTable.AddCell(new Phrase("Name:", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Features:", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Stock:", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Price", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Date Listed", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Category", boldTableFont));
+
+                orderInfoTable.AddCell(p.Name);
+                orderInfoTable.AddCell(p.Features);
+                orderInfoTable.AddCell(p.Stock.ToString());
+                decimal price = p.Price;
+                orderInfoTable.AddCell(price.ToString());
+                orderInfoTable.AddCell(p.DateListed.ToShortDateString());
+
+                orderInfoTable.AddCell(p.Category.Name);
+                //razorpdf.pdfresult
+                //.Value.ToShortDateString()
+
+                document.Add(orderInfoTable);
+                // @Server.MapPath("~/images/" +  @Model.Image )"
+
+                // logo.SetAbsolutePosition(800, 800);
 
 
-            return View("Reports");
+                document.Close();
 
-           
+                Response.ContentType = "application/pdf";
+                //  Response.AddHeader("Content-Disposition", string.Format("attachment;filename=Receipt-{0}.pdf", fm.OrderItemId.ToString()));
+                Response.BinaryWrite(memoryStream.ToArray());
+
+
+                return View("Reports");
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = "Sorry there seems to be a problem"; 
+                return View("Reports");
+            }
+
         }
 
         [Authorize(Roles = "Admin")]
         public ActionResult HighestNumberOfFaults()
         {
+            try
+            {
+                //List<Fault> fault = new ReportServ.ReportsServiceClient().HighestNumberFaults().ToList();
+                //Fault f = fault.First();
+                //Product p = new ProductServ.ProductServiceClient().GetProductById(f.OrderItem.ProductId);
 
-            //List<Fault> fault = new ReportServ.ReportsServiceClient().HighestNumberFaults().ToList();
-            //Fault f = fault.First();
-            //Product p = new ProductServ.ProductServiceClient().GetProductById(f.OrderItem.ProductId);
-
-            List<ProductDTO> highestFault = new ReportServ.ReportsServiceClient().HighestNumberFaults().ToList();
-            //Product p = new ProductServ.ProductServiceClient().GetProductById(f.OrderItem.ProductId);
-
-         
-
-            // Create a Document object
-            var document = new Document(PageSize.A4, 50, 50, 25, 25);
-
-            // Create a new PdfWriter object, specifying the output stream
-            var output = new System.IO.MemoryStream();
-            var writer = PdfWriter.GetInstance(document, output);
-
-            // Open the Document for writing
-            document.Open();
-
-
-            var titleFont = FontFactory.GetFont("Arial", 18, Font.BOLD);
-            var subTitleFont = FontFactory.GetFont("Arial", 14, Font.BOLD);
-            var boldTableFont = FontFactory.GetFont("Arial", 12, Font.BOLD);
-            var endingMessageFont = FontFactory.GetFont("Arial", 10, Font.ITALIC);
-            var bodyFont = FontFactory.GetFont("Arial", 12, Font.NORMAL);
-
-            document.Add(new Paragraph("Highest Number Of Faults", titleFont));
+                List<ProductDTO> highestFault = new ReportServ.ReportsServiceClient().HighestNumberFaults().ToList();
+                //Product p = new ProductServ.ProductServiceClient().GetProductById(f.OrderItem.ProductId);
 
 
 
-            document.Add(new Paragraph(""));
-            document.Add(new Paragraph(""));
-            document.Add(new Paragraph(""));
+                // Create a Document object
+                var document = new Document(PageSize.A4, 50, 50, 25, 25);
 
-            //foreach (ProductDTO p in highestFault)
-            //{
-            //    Image logo = Image.GetInstance(Server.MapPath("~" + p.Image.ToString()));
-            //    logo.ScaleToFit(200, 200);
-            //    logo.HasBorder(200);
-            //    logo.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
-            //    document.Add(logo);
-            //}
-            
+                // Create a new PdfWriter object, specifying the output stream
+                var output = new System.IO.MemoryStream();
+                var writer = PdfWriter.GetInstance(document, output);
 
-            var orderInfoTable = new PdfPTable(6);
-
-            orderInfoTable.HorizontalAlignment = 0;
-            orderInfoTable.SpacingBefore = 10;
-            orderInfoTable.SpacingAfter = 10;
-            orderInfoTable.DefaultCell.Border = 0;
+                // Open the Document for writing
+                document.Open();
 
 
+                var titleFont = FontFactory.GetFont("Arial", 18, Font.BOLD);
+                var subTitleFont = FontFactory.GetFont("Arial", 14, Font.BOLD);
+                var boldTableFont = FontFactory.GetFont("Arial", 12, Font.BOLD);
+                var endingMessageFont = FontFactory.GetFont("Arial", 10, Font.ITALIC);
+                var bodyFont = FontFactory.GetFont("Arial", 12, Font.NORMAL);
 
-            orderInfoTable.AddCell(new Phrase("Name:", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Features:", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Stock:", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Price", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Date Listed", boldTableFont));
-            
-            orderInfoTable.AddCell(new Phrase("Image", boldTableFont));
+                var logo = iTextSharp.text.Image.GetInstance(Server.MapPath("~/Images/logo.jpg"));
+                logo.SetAbsolutePosition(440, 800);
+                document.Add(logo);
 
-           
+
+                document.Add(new Paragraph("Highest Number Of Faults", titleFont));
+
+
+
+                document.Add(new Paragraph(""));
+                document.Add(new Paragraph(""));
+                document.Add(new Paragraph(""));
+
+                //foreach (ProductDTO p in highestFault)
+                //{
+                //    Image logo = Image.GetInstance(Server.MapPath("~" + p.Image.ToString()));
+                //    logo.ScaleToFit(200, 200);
+                //    logo.HasBorder(200);
+                //    logo.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
+                //    document.Add(logo);
+                //}
+
+
+
+                var orderInfoTable = new PdfPTable(6);
+
+                orderInfoTable.HorizontalAlignment = 0;
+                orderInfoTable.SpacingBefore = 10;
+                orderInfoTable.SpacingAfter = 10;
+                orderInfoTable.DefaultCell.Border = 0;
+
+
+
+                orderInfoTable.AddCell(new Phrase("Name:", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Features:", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Stock:", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Price", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Date Listed", boldTableFont));
+
+                orderInfoTable.AddCell(new Phrase("Image", boldTableFont));
+
+
                 foreach (ProductDTO p in highestFault)
                 {
                     orderInfoTable.AddCell(p.Name);
@@ -265,145 +297,166 @@ namespace ElectrosLtdApplication.Controllers
                     decimal price = p.Price;
                     orderInfoTable.AddCell(price.ToString());
 
-                    orderInfoTable.AddCell(p.DateListed.ToString());
+                    orderInfoTable.AddCell(p.DateListed.ToShortDateString());
 
-                    Image logo = Image.GetInstance(Server.MapPath("~" + p.Image.ToString()));
-                    orderInfoTable.AddCell(logo);
+                    Image logoI = Image.GetInstance(Server.MapPath("~" + p.Image.ToString()));
+                    orderInfoTable.AddCell(logoI);
 
                 }
-           
 
-                
-                //
-               
+
+
                 //
 
-               // orderInfoTable.AddCell(p.Category.Name);
-          
-            //razorpdf.pdfresult
-            //.Value.ToShortDateString()
+                //
 
-            document.Add(orderInfoTable);
-            // @Server.MapPath("~/images/" +  @Model.Image )"
+                // orderInfoTable.AddCell(p.Category.Name);
 
-            // logo.SetAbsolutePosition(800, 800);
+                //razorpdf.pdfresult
+                //.Value.ToShortDateString()
 
+                document.Add(orderInfoTable);
+                // @Server.MapPath("~/images/" +  @Model.Image )"
 
-            document.Close();
-
-            Response.ContentType = "application/pdf";
-            //  Response.AddHeader("Content-Disposition", string.Format("attachment;filename=Receipt-{0}.pdf", fm.OrderItemId.ToString()));
-            Response.BinaryWrite(output.ToArray());
+                // logo.SetAbsolutePosition(800, 800);
 
 
-            return View("Reports");
+                document.Close();
+
+                Response.ContentType = "application/pdf";
+                //  Response.AddHeader("Content-Disposition", string.Format("attachment;filename=Receipt-{0}.pdf", fm.OrderItemId.ToString()));
+                Response.BinaryWrite(output.ToArray());
+
+
+                return View("Reports");
+            }
+
+            catch (Exception e)
+            {
+                ViewBag.Message = "There seems to be a problem. Error :" + e.Message;
+                return View("Reports");
+            }
         }
 
         [Authorize(Roles = "Admin")]
         public ActionResult LeastNumberOfFaults()
         {
-
-            List<ProductDTO> lowestFault = new ReportServ.ReportsServiceClient().LowestNumberFaults().ToList();
-            //Product p = new ProductServ.ProductServiceClient().GetProductById(f.OrderItem.ProductId);
-
-
-
-            // Create a Document object
-            var document = new Document(PageSize.A4, 50, 50, 25, 25);
-
-            // Create a new PdfWriter object, specifying the output stream
-            var output = new System.IO.MemoryStream();
-            var writer = PdfWriter.GetInstance(document, output);
-
-            // Open the Document for writing
-            document.Open();
-
-
-            var titleFont = FontFactory.GetFont("Arial", 18, Font.BOLD);
-            var subTitleFont = FontFactory.GetFont("Arial", 14, Font.BOLD);
-            var boldTableFont = FontFactory.GetFont("Arial", 12, Font.BOLD);
-            var endingMessageFont = FontFactory.GetFont("Arial", 10, Font.ITALIC);
-            var bodyFont = FontFactory.GetFont("Arial", 12, Font.NORMAL);
-
-            document.Add(new Paragraph("Lowest Number Of Faults", titleFont));
-
-
-
-            document.Add(new Paragraph(""));
-            document.Add(new Paragraph(""));
-            document.Add(new Paragraph(""));
-
-            //foreach (ProductDTO p in highestFault)
-            //{
-            //    Image logo = Image.GetInstance(Server.MapPath("~" + p.Image.ToString()));
-            //    logo.ScaleToFit(200, 200);
-            //    logo.HasBorder(200);
-            //    logo.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
-            //    document.Add(logo);
-            //}
-
-
-            var orderInfoTable = new PdfPTable(6);
-
-            orderInfoTable.HorizontalAlignment = 0;
-            orderInfoTable.SpacingBefore = 10;
-            orderInfoTable.SpacingAfter = 10;
-            orderInfoTable.DefaultCell.Border = 0;
-
-
-
-            orderInfoTable.AddCell(new Phrase("Name:", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Features:", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Stock:", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Price", boldTableFont));
-            orderInfoTable.AddCell(new Phrase("Date Listed", boldTableFont));
-
-            orderInfoTable.AddCell(new Phrase("Image", boldTableFont));
-
-
-            foreach (ProductDTO p in lowestFault)
+            try
             {
-                orderInfoTable.AddCell(p.Name);
+                List<ProductDTO> lowestFault = new ReportServ.ReportsServiceClient().LowestNumberFaults().ToList();
+                //Product p = new ProductServ.ProductServiceClient().GetProductById(f.OrderItem.ProductId);
 
-                orderInfoTable.AddCell(p.Features);
 
-                orderInfoTable.AddCell(p.Stock.ToString());
 
-                decimal price = p.Price;
-                orderInfoTable.AddCell(price.ToString());
+                // Create a Document object
+                var document = new Document(PageSize.A4, 50, 50, 25, 25);
 
-                orderInfoTable.AddCell(p.DateListed.ToString());
+                // Create a new PdfWriter object, specifying the output stream
+                var output = new System.IO.MemoryStream();
+                var writer = PdfWriter.GetInstance(document, output);
 
-                Image logo = Image.GetInstance(Server.MapPath("~" + p.Image.ToString()));
-                orderInfoTable.AddCell(logo);
+                // Open the Document for writing
+                document.Open();
+
+
+                var titleFont = FontFactory.GetFont("Arial", 18, Font.BOLD);
+                var subTitleFont = FontFactory.GetFont("Arial", 14, Font.BOLD);
+                var boldTableFont = FontFactory.GetFont("Arial", 12, Font.BOLD);
+                var endingMessageFont = FontFactory.GetFont("Arial", 10, Font.ITALIC);
+                var bodyFont = FontFactory.GetFont("Arial", 12, Font.NORMAL);
+
+                var logo = iTextSharp.text.Image.GetInstance(Server.MapPath("~/Images/logo.jpg"));
+                logo.SetAbsolutePosition(440, 800);
+                document.Add(logo);
+
+
+                document.Add(new Paragraph("Lowest Number Of Faults", titleFont));
+
+
+
+                document.Add(new Paragraph(""));
+                document.Add(new Paragraph(""));
+                document.Add(new Paragraph(""));
+
+                //foreach (ProductDTO p in highestFault)
+                //{
+                //    Image logo = Image.GetInstance(Server.MapPath("~" + p.Image.ToString()));
+                //    logo.ScaleToFit(200, 200);
+                //    logo.HasBorder(200);
+                //    logo.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
+                //    document.Add(logo);
+                //}
+
+
+                var orderInfoTable = new PdfPTable(6);
+
+                orderInfoTable.HorizontalAlignment = 0;
+                orderInfoTable.SpacingBefore = 10;
+                orderInfoTable.SpacingAfter = 10;
+                orderInfoTable.DefaultCell.Border = 0;
+
+
+
+                orderInfoTable.AddCell(new Phrase("Name:", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Features:", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Stock:", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Price", boldTableFont));
+                orderInfoTable.AddCell(new Phrase("Date Listed", boldTableFont));
+
+                orderInfoTable.AddCell(new Phrase("Image", boldTableFont));
+
+
+                foreach (ProductDTO p in lowestFault)
+                {
+                    orderInfoTable.AddCell(p.Name);
+
+                    orderInfoTable.AddCell(p.Features);
+
+                    orderInfoTable.AddCell(p.Stock.ToString());
+
+                    decimal price = p.Price;
+                    orderInfoTable.AddCell(price.ToString());
+
+                    orderInfoTable.AddCell(p.DateListed.ToShortDateString());
+
+                    Image logoI = Image.GetInstance(Server.MapPath("~" + p.Image.ToString()));
+                    orderInfoTable.AddCell(logoI);
+
+                }
+
+
+
+                //
+
+                //
+
+                // orderInfoTable.AddCell(p.Category.Name);
+
+                //razorpdf.pdfresult
+                //.Value.ToShortDateString()
+
+                document.Add(orderInfoTable);
+                // @Server.MapPath("~/images/" +  @Model.Image )"
+
+                // logo.SetAbsolutePosition(800, 800);
+
+
+                document.Close();
+
+                Response.ContentType = "application/pdf";
+                //  Response.AddHeader("Content-Disposition", string.Format("attachment;filename=Receipt-{0}.pdf", fm.OrderItemId.ToString()));
+                Response.BinaryWrite(output.ToArray());
+
+
+                return View("Reports");
+
 
             }
-
-
-
-            //
-
-            //
-
-            // orderInfoTable.AddCell(p.Category.Name);
-
-            //razorpdf.pdfresult
-            //.Value.ToShortDateString()
-
-            document.Add(orderInfoTable);
-            // @Server.MapPath("~/images/" +  @Model.Image )"
-
-            // logo.SetAbsolutePosition(800, 800);
-
-
-            document.Close();
-
-            Response.ContentType = "application/pdf";
-            //  Response.AddHeader("Content-Disposition", string.Format("attachment;filename=Receipt-{0}.pdf", fm.OrderItemId.ToString()));
-            Response.BinaryWrite(output.ToArray());
-
-
-            return View("Reports");
+            catch (Exception e)
+            {
+                ViewBag.Message = "Sorry there seems to be a problem"; 
+                return View("Reports");
+            }
         }
 
     }

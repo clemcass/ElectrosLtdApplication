@@ -65,4 +65,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Filter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="clientId" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="faultId" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="from" nillable="true" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="to" nillable="true" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FilterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="FilterResult" nillable="true" type="q6:ArrayOfFault" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

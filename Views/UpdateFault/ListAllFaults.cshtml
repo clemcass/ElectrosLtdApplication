@@ -5,11 +5,79 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="../../Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript">
 
+
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            Filter();
+            return false;
+        }
+    });
+
+    $(function () {
+        $("#txtStartDate").datepicker();
+        $("#txtEndDate").datepicker();
+
+    });
+
+    function Filter() {
+
+        var from = $("#txtStartDate").val();
+        var to = $("#txtEndDate").val();
+
+        var clientId = $("#Users option:selected").text()
+        var faultId = $("#Faults option:selected").text()
+
+        var category = $('select#Category option:selected').val();
+        var sort = $("#ddl option:selected").text()
+
+        $.ajax({
+            url: '/UpdateFault/FilterFault/',
+            data: { from: from, to: to, clientId: clientId, faultId: faultId, sort: sort, category: category },
+            type: "POST",
+            dataType: 'Html',
+            cache: false,
+            success: function (data) {
+
+                //                $("#products").empty();
+                //                $("#products").append(data);
+
+
+            }
+        });
+    }
+
+
+
+
+
+
+ </script>
+ <div id="update-message" style='color:red'>
+    @ViewBag.Message
+</div>
+
+ <p>Date: <input type="text" id="txtStartDate"> Date: <input type="text" id="txtEndDate"> 
  
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
+    @* User: @Html.DropDownList("Users","Select")
+     Fault: @Html.DropDownList("Faults", "Select")
+     Category : @Html.DropDownList("Category","Select")
+      Sort :@Html.DropDownList("ddl","Select")
+ *@
+
+<p>
+
+<div id="update-message" style='color:red'>
+    @ViewBag.Message
+</div>
+ 
+ <div id="faults">  
+  <table width="600" style="text-align:center;">
     <tr>
         <th>
             TicketNo
@@ -20,7 +88,7 @@
         <th>
             OrderItemId
         </th>
-        <th>Status</th>
+        <th>Date</th>
         <th></th>
     </tr>
 
@@ -36,9 +104,16 @@
             @Html.DisplayFor(modelItem => item.OrderItemId)
         </td>
         <td>
+            @{var d = Convert.ToDateTime(item.Date);}
+             @{var d1 = d.ToShortDateString();} 
+                @Html.DisplayFor(model => d1)
+
+        </td>
+        <td>
             @Html.ActionLink("Update Fault", "UpdateFault", new { id = item.FaultId })
         </td>
     </tr>
 }
 
 </table>
+</div>

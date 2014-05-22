@@ -265,4 +265,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfTown" nillable="true" type="tns:ArrayOfTown" />
+  <xs:complexType name="ArrayOfCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Category" nillable="true" type="tns:Category" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCategory" nillable="true" type="tns:ArrayOfCategory" />
 </xs:schema>

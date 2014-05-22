@@ -24,14 +24,19 @@ namespace ElectrosLtdApplication.Models
         [Required(ErrorMessage = "Surname can not be blank")]
         public string Surname { get; set; }
 
+        [Required(ErrorMessage = "Address 1 can not be blank")]
         public string Address1 { get; set; }
         public string Address2 { get; set; }
+
+        [Required(ErrorMessage = "PostCode can not be blank")]
         public string PostCode { get; set; }
+
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{2})$", ErrorMessage = "Entered phone format is not valid.")]
         public int Mobile { get; set; }
 
         [Required(ErrorMessage = "Email can not be blank")]
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "Email is not Valid")]
-        [Display(Name = "User name")]
+        [Display(Name = "Email")]
         [Remote("doesEmailExist", "Register", HttpMethod = "POST", ErrorMessage = "email already exists. Please enter a different email.")]
         public string Email { get; set; }
 

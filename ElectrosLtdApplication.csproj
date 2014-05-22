@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsPurchasedController.cs" />
     <Compile Include="Controllers\ManageReturnsFaultsController.cs" />
@@ -166,6 +167,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\404.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -230,6 +232,7 @@
     <Content Include="Images\img08.jpg" />
     <Content Include="Images\img09.gif" />
     <Content Include="Images\img10.jpg" />
+    <Content Include="Images\iphone5s.jpg" />
     <Content Include="Images\logo.jpg" />
     <Content Include="Images\noise.png" />
     <Content Include="Images\oblique-lines.png" />
@@ -241,9 +244,11 @@
     <Content Include="Images\rate0.png" />
     <Content Include="Images\rate1.gif" />
     <Content Include="Images\rate1.png" />
+    <Content Include="Images\samsungs5.jpg" />
     <Content Include="Images\sidebar-corner.png" />
     <Content Include="Images\slider-nav.png" />
     <Content Include="Images\star.gif" />
+    <Content Include="js\bjqs-1.3.min.js" />
     <Content Include="js\css3-mediaqueries.js" />
     <Content Include="js\custom.js" />
     <Content Include="js\form-validation.js" />
@@ -365,6 +370,7 @@
     <None Include="js\superfish-1.4.8\css\.DS_Store" />
     <None Include="js\superfish-1.4.8\images\.DS_Store" />
     <None Include="js\superfish-1.4.8\js\.DS_Store" />
+    <None Include="Properties\DataSources\Common.Category.datasource" />
     <None Include="Properties\DataSources\Common.Country.datasource" />
     <None Include="Properties\DataSources\Common.Fault.datasource" />
     <None Include="Properties\DataSources\Common.FaultTrack.datasource" />

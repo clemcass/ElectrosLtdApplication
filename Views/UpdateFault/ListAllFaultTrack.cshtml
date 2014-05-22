@@ -30,20 +30,21 @@
         var to = $("#txtEndDate").val();
 
         var clientId = $("#Users option:selected").text()
-
         var faultId = $("#Faults option:selected").text()
+
+        var category = $('select#Category option:selected').val();
         var sort = $("#ddl option:selected").text()
 
         $.ajax({
             url: '/UpdateFault/FilterFault/',
-            data: { from: from, to: to, clientId: clientId, faultId: faultId, sort :sort },
+            data: { from: from, to: to, clientId: clientId, faultId: faultId, sort :sort ,category : category},
             type: "POST",
             dataType: 'Html',
             cache: false,
             success: function (data) {
 
-                //                $("#products").empty();
-                //                $("#products").append(data);
+                             $("#update").empty();
+                            $("#update").append(data);
 
 
             }
@@ -56,27 +57,35 @@
 
 
  </script>
+ <div id="update-message" style='color:red'>
+    @ViewBag.Message
+</div>
+
  <p>Date: <input type="text" id="txtStartDate"> Date: <input type="text" id="txtEndDate"> 
  
-      @Html.DropDownList("Users","Select")
-      @Html.DropDownList("Faults", "Select")
-      @Html.DropDownList("ddl","Select")
+     User: @Html.DropDownList("Users", "Select")
+     Fault: @Html.DropDownList("Faults", "Select")
+     Category : @Html.DropDownList("Category","Select")
+      Sort :@Html.DropDownList("ddl","Select")
  
 
 <p>
 
-
-<table>
+<div id="update">
+<table width="600"  style="text-align:center;">
     <tr>
         <th>
             Date
         </th>
+
         <th>
             Type
         </th>
+
         <th>
             Description
         </th>
+
         <th>
             FaultId
         </th>
@@ -85,7 +94,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Date)
+        @{var d = Convert.ToDateTime(item.Date);}
+             @{var d1 = d.ToShortDateString();} 
+                @Html.DisplayFor(model => d1)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Type)
@@ -101,3 +112,4 @@
 }
 
 </table>
+</div>

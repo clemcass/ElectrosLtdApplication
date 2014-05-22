@@ -7,7 +7,9 @@
  
 }
 
-
+<div id="update-message" style='color:red'>
+    @ViewBag.Message
+</div>
 
 <p>
     Please enter your user name and password. @Html.ActionLink("Register", "Register", "Register") if you don't have an account.
@@ -28,7 +30,7 @@
 @using (Html.BeginForm()) {
     <fieldset>
       
-
+      
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Username)

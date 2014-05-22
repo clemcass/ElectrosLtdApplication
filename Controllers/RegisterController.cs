@@ -12,12 +12,21 @@ namespace ElectrosLtdApplication.Controllers
     public class RegisterController : Controller
     {
         //
-   
+
 
         public ActionResult Register()
         {
-            ViewBag.Roles = new UserServ.UserServiceClient().getAllRoles();
-           return View();
+            try
+            {
+                ViewBag.Roles = new UserServ.UserServiceClient().getAllRoles();
+                return View();
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = "Sorry there seems to be a problem"; 
+                return View();
+            }
+
         }
         [HttpPost]
         public ActionResult Register(UserModel u, FormCollection c)
@@ -26,9 +35,9 @@ namespace ElectrosLtdApplication.Controllers
             {
                 //first check for all validations like if username exist password exist, matching confirm password etcc...
 
-               
+
                 TempData["PasswordE"] = new UserServ.UserServiceClient().Encrypt(u.Password, u.Pin.ToString());
-                  
+
 
                 var roles = new UserServ.UserServiceClient().getAllRoles();
                 bool flag = false;
@@ -66,7 +75,7 @@ namespace ElectrosLtdApplication.Controllers
 
 
 
-                   
+
                     //loop again for roles and for each role that is true add a user role
                     List<int> roleList = new List<int>();
                     foreach (Role r in roles)
@@ -84,16 +93,16 @@ namespace ElectrosLtdApplication.Controllers
 
                     new UserServ.UserServiceClient().AddUser(user, listOfRoles);
                     return RedirectToAction("Login", "UserAuthentication");
-                 
+
                 }
 
-               
+
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message);
             }
-     
+
             ViewBag.Roles = new UserServ.UserServiceClient().getAllRoles();
             return View();
         }
@@ -118,7 +127,7 @@ namespace ElectrosLtdApplication.Controllers
                 ls.Add(new SelectListItem() { Text = country.Name, Value = country.CountryId.ToString() });
             }
             return ls;
-           
+
         }
 
 
@@ -140,7 +149,7 @@ namespace ElectrosLtdApplication.Controllers
             return Json(email == false);
         }
 
-       
+
 
     }
 }

@@ -1,6 +1,10 @@
 ﻿@model IEnumerable<Common.Product>
 
-<table width="1024">
+<div id="update-message" style='color:red'>
+@ViewBag.Message
+</div>
+
+<table width="1024" style="text-align:center;" >
            <tr>
             <th>
                 Name
@@ -50,7 +54,9 @@
                 </td>
                    <td>
                    
-                    @Html.DisplayFor(modelItem => item.DateListed)
+                   @{var d = Convert.ToDateTime(item.DateListed);}
+             @{var d1 = d.ToShortDateString();} 
+                @Html.DisplayFor(model => d1)
                 </td>
                 <td>
                     @Html.ActionLink("Details", "ProductDetails", new { id = item.ProductId })

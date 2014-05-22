@@ -3,6 +3,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div id="update-message" style='color:red'>
+@ViewBag.Message
+</div>
 
 <p></p>
 <p>@Html.ActionLink("Highly Rated Item", "HighlyRatedItem", "Reports")</p>

@@ -6,7 +6,10 @@
 }
 
 
-<table>
+
+<div style="height:100%;width:50%;float:left;padding:0; text-align: center;">
+   
+<table style="text-align:center; width:50%;">
     <tr>
         <th>
             Date
@@ -25,7 +28,9 @@
 @foreach (var item in Model.FaultTrackList) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Date)
+           @{var d = Convert.ToDateTime(item.Date);}
+             @{var d1 = d.ToShortDateString();} 
+                @Html.DisplayFor(model => d1)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Type)
@@ -41,17 +46,24 @@
 }
 
 </table>
+</div>
 
-@using (Html.BeginForm()) {
+<div id="update-message" style='color:red'>
+    @ViewBag.Message
+</div>
+<div  style="height:100%;width:50%;float:right;padding:0; text-align: left;">
+@using (Html.BeginForm())
+{
     @Html.ValidationSummary(true)
     <fieldset>
+    <br />
         <legend>Fault</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Description)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.Description)
+            @Html.TextAreaFor(model => model.Description)
         </div>
 
         @Html.HiddenFor(model => model.FaultId)
@@ -68,4 +80,6 @@
             <input type="submit" value="Create"  />
         </p>
     </fieldset>
+    
 }
+</div>

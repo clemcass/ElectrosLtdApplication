@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<Common.OrderItem>
 
+<div id="update-message" style='color:red'>
+@ViewBag.Message
+</div>
 
-<table>
+<table style="text-align:center;">
     <tr>
         <th>
             Order Item Id
@@ -42,8 +45,8 @@
         </td>
        <td>
             @Html.ActionLink("Details", "Details", new { id = item.OrderItemId }) 
-            @* @Html.ActionLink("Print", "Print", new { id = item.OrderItemId }) *@
-            <a href='#' onclick='OnButtonClick(@item.OrderItemId)'>Print</a>
+             @Html.ActionLink("Print", "Print", new { id = item.OrderItemId }) 
+             <a href='#' onclick='OnButtonClick(@item.OrderItemId)'>Send Email</a>
         </td>
     </tr>
 }
@@ -60,7 +63,7 @@
         var end = $("#txtEndDate").val();
 
         $.ajax({
-            url: '/ItemsPurchased/Print/',
+            url: 'SendEmail/',
             data: { id: x, start: start, end: end },
             type: "POST",
             dataType: 'Html',
